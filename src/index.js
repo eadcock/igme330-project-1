@@ -2,8 +2,10 @@ let canvas, ctx;
 const canvasWidth = 600,
     canvasHeight = 400;
 const cellWidth = 10;
-const fps = 12;
 let lifeworld;
+
+// user controlled values
+let fps = 12, waterSpawnRate = 0.05, herbivoreDyingRate = 5, carnivoreDyingRate = 5;
 
 window.onload = init;
 
@@ -13,7 +15,7 @@ function init() {
     canvas.height = canvasHeight;
     ctx = canvas.getContext('2d');
     // TODO: init lifeworld
-    lifeworld = new Lifeworld(60, 40, 0.2);
+    lifeworld = new Lifeworld();
     loop();
 }
 
