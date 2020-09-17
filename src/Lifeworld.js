@@ -10,7 +10,7 @@ const tileType = {
 };
 
 class Lifeworld {
-    constructor(numCols = 60, numRows = 40, percentWater = 0.1, percentPlant = 0.1, percentHerbivore = 0.1, percentCarnivore = 0.1) {
+    constructor(numCols = 60, numRows = 40, percentWater = 0.1, percentPlant = 0.1, percentHerbivore = 0.1, percentCarnivore = 0.01) {
         this.numCols = numCols;
         this.numRows = numRows;
         this.percentWater = percentWater;
@@ -29,23 +29,29 @@ class Lifeworld {
             let newColumn = new Array(this.numRows).fill(0);
             grid.push(newColumn);
         }
+        for(let col = 0; col < this.numCols; col++) {
+            for(let row = 0; row < this.numRows; row++) {
+                grid[col][row] = new Ground();
+            }
+        }
         return grid;
     }
 
     randomSetup() {
         for (let col = 0; col < this.numCols; col++) {
             for (let row = 0; row < this.numRows; row++) {
-                let cell = Math.random();
-                if (cell < this.percentWater) {
-                    this.world[col][row] = water;
-                } else if (cell < this.percentWater + this.percentPlant) {
-                    this.world[col][row] = plant;
-                } else if (cell < this.percentWater + this.percentPlant + this.percentHerbivore) {
-                    this.world[col][row] = herbivore;
-                } else if (cell < this.percentWater + this.percentPlant + this.percentHerbivore + this.percentCarnivore) {
-                    this.world[col][row] = carnivore;
+                const cell = this.world[col][row];
+                let tileSpawn = Math.random();
+                if (tileSpawn < this.percentWater) {
+                    cell.occupiedBy = new Water();
+                } else if (tileSpawn < this.percentWater + this.percentPlant) {
+                    cell.occupiedBy = new Plant();
+                } else if (tileSpawn < this.percentWater + this.percentPlant + this.percentHerbivore) {
+                    cell.occupiedBy = new Herbivore();
+                } else if (tileSpawn < this.percentWater + this.percentPlant + this.percentHerbivore + this.percentCarnivore) {
+                    cell.occupiedBy = new Carnivore();
                 } else {
-                    this.world[col][row] = ground;
+                    cell.occupiedBy = null;
                 }
             }
         }
@@ -53,43 +59,52 @@ class Lifeworld {
 
     getNeighbors(x, y) {
         let arr = this.world; // create an alias so we get to less below
-        if (x > 0 && y > 0 && x < this.numCols - 1 && y < this.numRows - 1) {
-            return [
-                [arr[x - 1][y - 1], arr[x][y - 1], arr[x + 1][y - 1]],
-                [arr[x - 1][y], 0, arr[x + 1][y]],
-                [arr[x - 1][y + 1], arr[x][y + 1], arr[x + 1][y + 1]]
-            ];
-        } else {
-            return 0;
+        return [
+            [
+                x > 0 && y > 0 ? arr[x - 1][y - 1] : null, 
+                y > 0 ? arr[x][y - 1] : null, 
+                x < this.numCols - 1 ? arr[x + 1][y - 1] : null
+            ],
+            [
+                x > 0 ? arr[x - 1][y] : null, 
+                arr[x][y], 
+                x < this.numCols - 1 ? arr[x + 1][y] : null
+            ],
+            [
+                x > 0 && y < this.numRows - 1 ? arr[x - 1][y + 1] : null, 
+                y < this.numRows - 1 ? arr[x][y + 1] : null, 
+                x < this.numCols - 1 && y < this.numRows - 1 ? arr[x + 1][y + 1] : null
+            ]
+        ];
+        // return [
+        //     [
+        //         { value: arr[x - 1][y - 1], x: x-1, y: y-1 }, 
+        //         { value: arr[x][y - 1], x: x, y: y-1 }, 
+        //         { value: arr[x + 1][y - 1], x: x+1, y: y-1 }
+        //     ],
+        //     [
+        //         { value: arr[x - 1][y], x: x-1, y: y }, 
+        //         0, 
+        //         { value: arr[x + 1][y], x: x+1, y: y }
+        //     ],
+        //     [
+        //         { value: arr[x - 1][y + 1], x: x-1, y: y+1 },
+        //         { value: arr[x][y + 1], x: x, y: y+1 }, 
+        //         { value: arr[x + 1][y + 1], x: x+1, y: y+1 }
+        //     ]
+        // ];
         }
-    }
 
     step() {
         for (let col = 0; col < this.numCols; col++) {
             for (let row = 0; row < this.numRows; row++) {
-                switch (this.world[col][row]) {
-                    case ground:
-                        this.worldBuffer[col][row] = ground.step(col, row);
-                        break;
-                    case water:
-                        this.worldBuffer[col][row] = water.step(col, row);
-                        break;
-                    case plant:
-                        this.worldBuffer[col][row] = plant.step(col, row);
-                        break;
-                    case herbivore:
-                        this.worldBuffer[col][row] = herbivore.step(col, row);
-                        break;
-                    case carnivore:
-                        this.worldBuffer[col][row] = carnivore.step(col, row);
-                        break;
-                }
+                this.world[col][row].step(col, row);
             }
         }
 
         // swap arrays
-        let temp = this.world;
-        this.world = this.worldBuffer;
-        this.worldBuffer;
+        // let temp = this.world;
+        // this.world = this.worldBuffer;
+        // this.worldBuffer = temp;
     }
 }

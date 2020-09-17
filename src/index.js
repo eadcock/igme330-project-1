@@ -5,7 +5,7 @@ const cellWidth = 10;
 let lifeworld;
 
 // user controlled values
-let fps = 12, waterSpawnRate = 0.05, herbivoreDyingRate = 5, carnivoreDyingRate = 5;
+let fps = 1, waterSpawnRate = 0.008, herbivoreDyingRate = 5, carnivoreDyingRate = 5;
 
 window.onload = init;
 
@@ -39,7 +39,7 @@ function drawWorld() {
     ctx.save();
     for (let col = 0; col < lifeworld.numCols; col++) {
         for (let row = 0; row < lifeworld.numRows; row++) {
-            drawCell(col, row, cellWidth, lifeworld.world[col][row].color);
+            drawCell(col, row, cellWidth, lifeworld.world[col][row].color());
         }
     }
     ctx.restore();
