@@ -5,7 +5,15 @@ const cellWidth = 10;
 let lifeworld;
 
 // user controlled values
-let fps = 1, waterSpawnRate = 0.008, herbivoreDyingRate = 5, carnivoreDyingRate = 5;
+let fps = 1;
+let waterSpawnRate = 0.008;
+let plantGrowCooldown = 10;
+let herbBreedingFoodRequirement = 3;
+let carnBreedingFoodRequirement = 3;
+let herbBreedingCooldown = 10;
+let carnBreedingCooldown = 10;
+let herbDyingRate = 5;
+let carnDyingRate = 5;
 
 window.onload = init;
 
@@ -14,6 +22,7 @@ function init() {
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     ctx = canvas.getContext('2d');
+    controlsInit();
     // TODO: init lifeworld
     lifeworld = new Lifeworld();
     loop();

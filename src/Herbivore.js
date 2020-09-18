@@ -2,8 +2,6 @@ class Herbivore {
     color = 'yellow';
     tileType = tileType.herbivore;
     lastAte = 0;
-    breedingFoodRequirement = 3;
-    breedingCooldown = 10;
     lastBred = 5;
     new = true;
 
@@ -21,7 +19,7 @@ class Herbivore {
             // 1. wander to random neighboring ground tile
             // 2. eat random neighboring plant tile
             const neighbors = lifeworld.getNeighbors(col, row);
-            if(this.lastAte > herbivoreDyingRate) {
+            if(this.lastAte > herbDyingRate) {
                 neighbors[1][1].killOccupant();
             }
             if(neighbors) {
@@ -36,7 +34,7 @@ class Herbivore {
                 if(plants.length) {
                     plants.forEach(e => e[0].killOccupant());
                     this.lastAte = 0;
-                } else if (herbivores.length > 1 && ground.length && this.lastAte <= this.breedingFoodRequirement && this.lastBred > this.breedingCooldown) {
+                } else if (herbivores.length > 1 && ground.length && this.lastAte <= herbBreedingFoodRequirement && this.lastBred > herbBreedingCooldown) {
                     getRandomElement(ground)[0].occupiedBy = new Herbivore();
                     console.log('breed');
                     this.lastBred = 0;

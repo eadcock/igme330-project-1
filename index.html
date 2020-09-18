@@ -6,6 +6,7 @@
     <title></title>
     <link rel="stylesheet" href="styles/default-styles.css">
     <script src="src/index.js"></script>
+    <script src="src/controls.js"></script>
     <script src="src/Lifeworld.js"></script>
     <script src="src/Ground.js"></script>
     <script src="src/Water.js"></script>
@@ -17,6 +18,51 @@
 
 <body>
     <canvas></canvas>
+    
+    <b>FPS: </b>
+    <input type='range' min='1' max='121' value='1' step='10' class='slider' id='fpsRange'>
+    <b id='fpsRangeOutput'></b>
+    <br>
+    
+    <b>Water Spawn Rate: </b>
+    <input type='range' min='0.01' max='1.00' value='0.01' step='0.01' class='slider' id='waterSpawnRange'>
+    <b id='waterSpawnRangeOutput'></b>
+    <br>
+    
+    <b>Plant Grow Cooldown: </b>
+    <input type='range' min='0' max='30' value='10' step='1' class='slider' id='plantGrowRange'>
+    <b id='plantGrowRangeOutput'></b>
+    <br>
+    
+    <b>Herbivore Breeding Food Requirement: </b>
+    <input type='range' min='0' max='20' value='3' step='1' class='slider' id='herbBreedingFoodRange'>
+    <b id='herbBreedingFoodRangeOutput'></b>
+    <br>
+    
+    <b>Carnviore Breeding Food Requirement: </b>
+    <input type='range' min='0' max='20' value='3' step='1' class='slider' id='carnBreedingFoodRange'>
+    <b id='carnBreedingFoodRangeOutput'></b>
+    <br>
+    
+    <b>Herbivore Breeding Cooldown: </b>
+    <input type='range' min='0' max='20' value='10' step='1' class='slider' id='herbBreedingRange'>
+    <b id='herbBreedingRangeOutput'></b>
+    <br>
+    
+    <b>Carnviore Breeding Cooldown: </b>
+    <input type='range' min='0' max='20' value='10' step='1' class='slider' id='carnBreedingRange'>
+    <b id='carnBreedingRangeOutput'></b>
+    <br>
+    
+    <b>Herbivore Dying Rate: </b>
+    <input type='range' min='5' max='30' value='5' step='5' class='slider' id='herbDyingRange'>
+    <b id='herbDyingRangeOutput'></b>
+    <br>
+    
+    <b>Carnviore Dying Rate: </b>
+    <input type='range' min='5' max='30' value='5' step='5' class='slider' id='carnDyingRange'>
+    <b id='carnDyingRangeOutput'></b>
+    <br>
 </body>
 
 </html>

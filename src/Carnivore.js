@@ -15,8 +15,6 @@ class Carnivore {
     color = 'red';
     tileType = tileType.carnivore;
     lastAte = 0;
-    breedingFoodRequirement = 3;
-    breedingCooldown = 10;
     lastBred = 5;
     new = true;
 
@@ -27,7 +25,7 @@ class Carnivore {
             // 1. wander to random neighboring ground tile
             // 2. eat random neighboring plant tile
             const neighbors = lifeworld.getNeighbors(col, row);
-            if(this.lastAte > carnivoreDyingRate) {
+            if(this.lastAte > carnDyingRate) {
                 neighbors[1][1].killOccupant();
             }
             if(neighbors) {
@@ -41,7 +39,7 @@ class Carnivore {
                     const target = getRandomElement(herbivores);
                     target[0].killOccupant();
                     this.lastAte = 0;
-                } else if (carnivores.length > 1 && ground.length && this.lastAte <= this.breedingFoodRequirement && this.lastBred > this.breedingCooldown) {
+                } else if (carnivores.length > 1 && ground.length && this.lastAte <= carnBreedingFoodRequirement && this.lastBred > carnBreedingCooldown) {
                     getRandomElement(ground)[0].occupiedBy = new Carnivore();
                     console.log('breed');
                     this.lastBred = 0;

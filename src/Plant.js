@@ -9,7 +9,6 @@
 class Plant {
     color = 'green';
     tileType = tileType.plant;
-    growCooldown = 10;
     lastGrown = 5;
     new = true;
 
@@ -31,7 +30,7 @@ class Plant {
     }
 
     growNeighbor(col, row) {
-        if(this.lastGrown > this.growCooldown) {
+        if(this.lastGrown > plantGrowCooldown) {
             const neighbors = lifeworld.getNeighbors(col, row);
     
             let water = flattenArray(getNeighborsOfType(neighbors, tileType.water));
