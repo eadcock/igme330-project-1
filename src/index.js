@@ -5,7 +5,7 @@ const cellWidth = 10;
 let lifeworld;
 
 // user controlled values
-let fps = 1;
+let fps = 2;
 let waterSpawnRate = 0.008;
 let plantGrowCooldown = 10;
 let herbBreedingFoodRequirement = 3;

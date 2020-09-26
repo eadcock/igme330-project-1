@@ -1,0 +1,82 @@
+#canvas {
+    grid-area: canvas;
+}
+
+#controls {
+    grid-area: controls;
+}
+
+h1 {
+    grid-area: header;
+    text-align: center;
+}
+
+#instructions {
+    grid-area: instru;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 5em 7em 1fr;
+    grid-template-columns: 1fr 4fr 2em 4fr 1fr;
+    grid-template-areas:
+        "header header header header   header"
+        ".      instru instru instru   ."
+        "spacer canvas mid    controls spacer2";
+
+    background-color: #392F5A;
+    color: #A8C7BB;
+}
+
+.title {
+    display: inline-block;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #F092DD;
+    color: #392F5A;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.slider {
+    -webkit-appearance: none;
+    height: 10px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #F092DD;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #F092DD;
+  cursor: pointer;
+}

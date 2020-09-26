@@ -17,52 +17,101 @@
 </head>
 
 <body>
-    <canvas></canvas>
-    
-    <b>FPS: </b>
-    <input type='range' min='1' max='121' value='1' step='10' class='slider' id='fpsRange'>
-    <b id='fpsRangeOutput'></b>
-    <br>
-    
-    <b>Water Spawn Rate: </b>
-    <input type='range' min='0.01' max='1.00' value='0.01' step='0.01' class='slider' id='waterSpawnRange'>
-    <b id='waterSpawnRangeOutput'></b>
-    <br>
-    
-    <b>Plant Grow Cooldown: </b>
-    <input type='range' min='0' max='30' value='10' step='1' class='slider' id='plantGrowRange'>
-    <b id='plantGrowRangeOutput'></b>
-    <br>
-    
-    <b>Herbivore Breeding Food Requirement: </b>
-    <input type='range' min='0' max='20' value='3' step='1' class='slider' id='herbBreedingFoodRange'>
-    <b id='herbBreedingFoodRangeOutput'></b>
-    <br>
-    
-    <b>Carnviore Breeding Food Requirement: </b>
-    <input type='range' min='0' max='20' value='3' step='1' class='slider' id='carnBreedingFoodRange'>
-    <b id='carnBreedingFoodRangeOutput'></b>
-    <br>
-    
-    <b>Herbivore Breeding Cooldown: </b>
-    <input type='range' min='0' max='20' value='10' step='1' class='slider' id='herbBreedingRange'>
-    <b id='herbBreedingRangeOutput'></b>
-    <br>
-    
-    <b>Carnviore Breeding Cooldown: </b>
-    <input type='range' min='0' max='20' value='10' step='1' class='slider' id='carnBreedingRange'>
-    <b id='carnBreedingRangeOutput'></b>
-    <br>
-    
-    <b>Herbivore Dying Rate: </b>
-    <input type='range' min='5' max='30' value='5' step='5' class='slider' id='herbDyingRange'>
-    <b id='herbDyingRangeOutput'></b>
-    <br>
-    
-    <b>Carnviore Dying Rate: </b>
-    <input type='range' min='5' max='30' value='5' step='5' class='slider' id='carnDyingRange'>
-    <b id='carnDyingRangeOutput'></b>
-    <br>
+    <h1>Ecosystem Simulator</h1>
+
+    <canvas id='canvas'></canvas>
+
+    <div id='controls'>
+        <div id='fps'>
+            <b class='title tooltip'>
+                FPS:
+                <span class='tooltiptext'>Determines how many times to step in a second</span>
+            </b>
+            <input type='range' min='1' max='121' value='2' step='1' class='slider' id='fpsRange'>
+            <b id='fpsRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='waterSpawn'>
+            <b class='title tooltip'>Water Spawn Rate:
+                <span class='tooltiptext'>Percentage chance a ground tile will turn into water</span>
+            </b>
+            <input type='range' min='0.01' max='1.00' value='0.01' step='0.01' class='slider' id='waterSpawnRange'>
+            <b id='waterSpawnRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='plantGrow'>
+            <b class='title tooltip'>Plant Grow Cooldown:
+                <span class='tooltiptext'>How many frames before a plant may grow again</span>
+            </b>
+            <input type='range' min='0' max='30' value='10' step='1' class='slider' id='plantGrowRange'>
+            <b id='plantGrowRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='herbBreeding'>
+            <b class='title tooltip'>Herbivore Breeding Cooldown:
+                <span class='tooltiptext'>How many frames before an herbivore may breed again</span>
+            </b>
+            <input type='range' min='0' max='20' value='10' step='1' class='slider' id='herbBreedingRange'>
+            <b id='herbBreedingRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='carnBreeding'>
+            <b class='title tooltip'>Carnviore Breeding Cooldown:
+                <span class='tooltiptext'>How many frames before a carnivore may breed again</span>
+            </b>
+            <input type='range' min='0' max='20' value='10' step='1' class='slider' id='carnBreedingRange'>
+            <b id='carnBreedingRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='herbBreedingFood'>
+            <b class='title tooltip'>Herbivore Breeding Food Requirement:
+                <span class='tooltiptext'>How recently must an herbivore have eaten in order to breed</span>
+            </b>
+            <input type='range' min='0' max='20' value='3' step='1' class='slider' id='herbBreedingFoodRange'>
+            <b id='herbBreedingFoodRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='carnBreeding'>
+            <b class='title tooltip'>Carnviore Breeding Food Requirement:
+                <span class='tooltiptext'>How recently must a carnivore have eaten in order to breed</span>
+            </b>
+            <input type='range' min='0' max='20' value='3' step='1' class='slider' id='carnBreedingFoodRange'>
+            <b id='carnBreedingFoodRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='herbDying'>
+            <b class='title tooltip'>Herbivore Dying Rate:
+                <span class='tooltiptext'>How many frames an herbivore can survive without food</span>
+            </b>
+            <input type='range' min='5' max='30' value='5' step='5' class='slider' id='herbDyingRange'>
+            <b id='herbDyingRangeOutput'></b>
+            <br>
+        </div>
+
+        <div id='carnDying'>
+            <b class='title tooltip'>Carnviore Dying Rate:
+                <span class='tooltiptext'>How many frames a carnivore can survive without food</span>
+            </b>
+            <input type='range' min='5' max='30' value='5' step='5' class='slider' id='carnDyingRange'>
+            <b id='carnDyingRangeOutput'></b>
+            <br>
+        </div>
+    </div>
+
+    <div id='instructions'>
+        Welcome to your little ecosystem. Watch plants, herbivores, and carnivores grow, breed, and kill. Change values on the right to alter how tiles behave! Hover over a property for more information.<br>
+        Unoccupied tiles are brown, and have a chance of turning into water, blue.<br>
+        Green tiles, plants, will grow if an adjacent tile is water.<br>
+        Herbivores, represented by yellow, eat plants and breed with each other.<br>
+        Carnivores, red, hunt herbivores and breed.<br>
+    </div>
 </body>
 
 </html>
