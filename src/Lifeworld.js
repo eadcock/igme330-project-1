@@ -10,7 +10,7 @@ const tileType = {
 };
 
 class Lifeworld {
-    constructor(numCols = 60, numRows = 40, percentWater = 0.1, percentPlant = 0.1, percentHerbivore = 0.1, percentCarnivore = 0.03) {
+    constructor(numCols = 60, numRows = 40, percentWater = 0.1, percentPlant = 0.1, percentHerbivore = 0.1, percentCarnivore = 0.02) {
         this.numCols = numCols;
         this.numRows = numRows;
         this.percentWater = percentWater;

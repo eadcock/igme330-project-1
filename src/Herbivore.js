@@ -1,20 +1,15 @@
 class Herbivore {
     color = 'yellow';
     tileType = tileType.herbivore;
-    lastAte = 0;
-    lastBred = 5;
+    lastAte = herbBreedingFoodRequirement;
+    lastBred = herbBreedingCooldown - 3;
     new = true;
 
     step(col, row) {
         if(!this.new) {
             this.lastAte++;
             this.lastBred++;
-            // if(this.lastAte < 3) {
-            //     this.color = 'magenta';
-            // }
-            // else {
-            //     this.color = 'yellow';
-            // }
+            
             // keep track of how long since last eaten (dying rate)
             // 1. wander to random neighboring ground tile
             // 2. eat random neighboring plant tile

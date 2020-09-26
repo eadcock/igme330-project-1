@@ -8,12 +8,12 @@ let lifeworld;
 let fps = 2;
 let waterSpawnRate = 0.008;
 let plantGrowCooldown = 10;
-let herbBreedingFoodRequirement = 3;
-let carnBreedingFoodRequirement = 3;
-let herbBreedingCooldown = 10;
-let carnBreedingCooldown = 10;
-let herbDyingRate = 5;
-let carnDyingRate = 5;
+let herbBreedingFoodRequirement = 10;
+let carnBreedingFoodRequirement = 10;
+let herbBreedingCooldown = 7;
+let carnBreedingCooldown = 7;
+let herbDyingRate = 15;
+let carnDyingRate = 15;
 
 window.onload = init;
 
